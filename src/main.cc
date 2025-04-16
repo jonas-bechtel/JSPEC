@@ -1,3 +1,5 @@
+#undef _UNICODE
+
 #include <algorithm>
 #include <cassert>
 #include <chrono>
