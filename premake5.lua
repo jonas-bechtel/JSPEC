@@ -1,11 +1,4 @@
-workspace "jspec"
-    configurations { "Release" }
-    architecture "x86_64"
-    language "C++"
-    cppdialect "C++17"
-    location "build"
-
-project "jspec"
+project "JSPEC"
     kind "StaticLib"
     targetname "jspec"
     targetdir "bin"
