@@ -48,6 +48,7 @@ extern "C"
 // Basic types
 typedef void*  muParserHandle_t;    // parser handle
 
+#undef _UNICODE
 #ifndef _UNICODE
     typedef char   muChar_t;            // character type
 #else

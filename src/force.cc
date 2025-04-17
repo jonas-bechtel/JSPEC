@@ -135,7 +135,8 @@ void ForcePark::friction_force(int charge_number, int ion_number, vector<double>
             dlt = sqrt(dlt);
 
             double rho_max = max_impact_factor(dlt, charge_number, density_e[i]);
-//            double wp = sqrt(wp_const*density_e[i]);
+
+            //            double wp = sqrt(wp_const*density_e[i]);
 //
 //            //Calculate rho_max
 //            double rho_max = dlt/wp;
@@ -146,6 +147,7 @@ void ForcePark::friction_force(int charge_number, int ion_number, vector<double>
 
             double lc = this->lc(tpr, rho_max, rho_min, rho_lamor, i);   //Coulomb Logarithm
             //Calculate friction force
+
             double f = f_const*density_e[i]*lc/(dlt*dlt*dlt);
             force_tr[i] = f*v_tr[i];
             force_long[i] = f*v_long[i];
@@ -163,8 +165,10 @@ double ForceNonMag::rho_max(int charge_number, double v2, double ve2, double ne)
         rho_max = sqrt((v2+ve2)/(k_wp*ne));
     }
     else {
-        if(v2>ve2) rho_max = sqrt(v2/(k_wp*ne));
-        else rho_max = sqrt(ve2/(k_wp*ne));
+        if(v2>ve2) 
+            rho_max = sqrt(v2/(k_wp*ne));
+        else 
+            rho_max = sqrt(ve2/(k_wp*ne));
     }
     double rho_max_1 = this->rho_max_1(charge_number, ne);
     double rho_max_2 = this->rho_max_2(sqrt(v2));
@@ -636,6 +640,7 @@ void ForceNonMagNumeric3D::force_grid(double v, double v_tr, double v_l, double 
                 double rho_min = this->rho_min_const(charge_number)*f_inv_bot;
                 double lc = rho_max>rho_min?log(rho_max/rho_min):0;
                 double f = exp_vtr.at(j).at(i)*lc*(f_inv_bot*sqrt(f_inv_bot));
+
                 f_tr += sub_vtr*f;
                 f_l += sub_vl*f;
             }
@@ -694,7 +699,7 @@ void ForceNonMagNumeric3D::force_gsl(double v, double v_tr, double v_l, double v
     p->flag = 1;
     gsl_integration_qagiu(f, 0, espabs, esprel, limit, gow, &f_l, &error);
 
-    double ff = f_const*ne*inv_norm;
+    double ff = f_const * ne*inv_norm;
     force_tr = ff*f_tr;
     force_l = ff*f_l;
 }
@@ -1131,9 +1136,9 @@ void ForceDSM::friction_force(int charge_number, int ion_number,
             }
         }
 
-    auto end_time = std::chrono::high_resolution_clock::now();
-    auto time = end_time - start_time;
-    std::cout << "Force mag DSM took " << time/std::chrono::microseconds(1) << " us to run.\n";
+    //auto end_time = std::chrono::high_resolution_clock::now();
+    //auto time = end_time - start_time;
+    //std::cout << "Force mag DSM took " << time/std::chrono::microseconds(1) << " us to run.\n";
         break;
     }
     case Temperature::VARY: {

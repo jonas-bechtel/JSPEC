@@ -1,5 +1,3 @@
-#undef _UNICODE
-
 #include <algorithm>
 #include <cassert>
 #include <chrono>
@@ -9,7 +7,6 @@
 #include <map>
 #include <regex>
 #include <vector>
-
 
 #include "beam.h"
 #include "constants.h"

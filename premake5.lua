@@ -1,32 +1,40 @@
 project "JSPEC"
     kind "StaticLib"
-    targetname "jspec"
-    targetdir "bin"
-    objdir "obj"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "off"
 
-    defines { "UNICODE", "_UNICODE" }
-    removedefines { "UNICODE", "_UNICODE" }
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
-    -- Include and source directories
-    includedirs { "include" }
-    files { "src/**.cc", "include/**.h" }
+    files 
+    { 
+        "src/**.cc", 
+        "include/**.h"
+    }
 
-    -- Compiler flags
+    includedirs
+    {
+        "include"
+    }
+
+    libdirs
+    {
+        "lib" 
+    }
+
+    links 
+    { 
+        "gsl",
+        "gslcblas", 
+        "muparser"
+    }
+    
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "on"
+
     filter "configurations:Release"
-        optimize "Full"
-        symbols "Off"
-       -- warnings "Extra"
-        --buildoptions { "-Wall", "-fPIC" }
+        runtime "Release"
+        optimize "on"
 
-    -- Linker flags and libraries
-    libdirs { "lib" }
-    links { "gsl", "gslcblas", "muparser"}
-    --linkoptions {
-    --    "-Wl,-rpath=lib",         -- Runtime search path
-    --    "-s",                     -- Strip symbols
-    --    "-l:libmuparser.so.2"     -- Exact shared object
-    --}
-
-    -- Optional: if OpenMP is used
-    -- buildoptions { "-fopenmp" }
-    -- linkoptions { "-fopenmp" }
