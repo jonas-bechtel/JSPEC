@@ -18,7 +18,7 @@ project "JSPEC"
         "include"
     }
 
-    filter "system:windows":
+    filter "system:windows"
         systemversion "latest"
 
         libdirs
