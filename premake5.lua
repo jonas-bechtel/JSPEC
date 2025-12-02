@@ -17,30 +17,6 @@ project "JSPEC"
     {
         "include"
     }
-
-    filter "system:windows"
-        systemversion "latest"
-
-        libdirs
-        {
-            "lib" 
-        }
-
-    filter "system:linux"
-        pic "On"
-        systemversion "latest"
-
-        libdirs
-        {
-            "/usr/lib/x86_64-linux-gnu"
-        }
-
-    links 
-    { 
-        "gsl",
-        "gslcblas", 
-        "muparser"
-    }
     
     filter "configurations:Debug"
         runtime "Debug"
