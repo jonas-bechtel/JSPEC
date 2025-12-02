@@ -985,13 +985,13 @@ void ForceDSM::force(double ve_tr, double ve_l, double ve2_tr, double ve2_l, dou
         //intermediate impact parameter
         double rho_F = rho_L * v_sh / ve_tr;
         double rho_max = max_impact_factor(v_sh,charge_number,density);
-        double rho_min_mag = k*rho_L;
-        if(rho_min_mag<rho_min) rho_min_mag = rho_min;
+        double rho_min_mag = k * rho_L;
+        if (rho_min_mag < rho_min) rho_min_mag = rho_min;
         //Coulomb Logarithms
-        double L_M = rho_max>rho_min_mag? log(rho_max/rho_min_mag): 0;
-        double L_A = k*rho_L>rho_F? log(k*rho_L/rho_F): 0;
+        double L_M = rho_max > rho_min_mag ? log(rho_max / rho_min_mag) : 0;
+        double L_A = k * rho_L > rho_F ? log(k * rho_L / rho_F) : 0;
         double L_F = rho_F>rho_min? log(rho_F/rho_min): 0;
-        if(rho_F>rho_max) L_F = rho_max>rho_min? log(rho_max/rho_min): 0;
+        if (rho_F > rho_max) L_F = rho_max > rho_min ? log(rho_max / rho_min) : 0;
         double f_tr = 0;
         double f_l = 0;
         double f_mag_tr = 0;

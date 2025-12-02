@@ -18,10 +18,22 @@ project "JSPEC"
         "include"
     }
 
-    libdirs
-    {
-        "lib" 
-    }
+    filter "system:windows":
+        systemversion "latest"
+
+        libdirs
+        {
+            "lib" 
+        }
+
+    filter "system:linux"
+        pic "On"
+        systemversion "latest"
+
+        libdirs
+        {
+            "/usr/lib/x86_64-linux-gnu"
+        }
 
     links 
     { 
